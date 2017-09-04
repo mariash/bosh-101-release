@@ -37,6 +37,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Deploy BOSH director from jumpbox. See here: http://bosh.io/docs/init-google.html
 
    ```
+   mkdir -p ~/deployments/bosh-101
    cd bosh-101-release
    
    ./scripts/create-env
@@ -52,6 +53,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    bosh -e bosh-101 upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent
    ```
+1. Create `bosh-101-vars.yml` file with BOSH deployment variables (available in lastpass).
 
 1. Deploy VMs with BOSH + warden CPI to that BOSH director:
    ```
@@ -60,10 +62,9 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 
    ./scripts/deploy-classroom 2
    ```
-   * this script requires `bosh-101-vars.yml` file to exists with the list of deployment variables (available in lastpass).
    * where 2 is the number of students, VMs with BOSH installed on them.
 
-1. Save jumpbox SSH private key on jumpbox VM (from lastpass in `bosh-101-vars.yml`): 
+1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml`): 
 
    ```
    vim ~/.ssh/jumpbox.key
