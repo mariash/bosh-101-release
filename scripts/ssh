@@ -12,11 +12,6 @@ if [ -z "$GATEWAY_USER" ]; then
     exit 1
 fi
 
-if [ -z "$GATEWAY_USER" ]; then
-    echo "Must provide GATEWAY_USER"
-    exit 1
-fi
-
 if [ -z "$GATEWAY_HOST" ]; then
     echo "Must provide GATEWAY_HOST"
     exit 1
