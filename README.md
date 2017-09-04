@@ -13,8 +13,17 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Prepare GCP environment and deploy jumpbox (`bosh-bastion`). See: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md
 
    **NOTE**: Replace `hashicorp/terraform:light` with `hashicorp/terraform:0.9.9` as per this issue: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/issues/222
+   
+1. SSH to jumpbox
+  ```
+  gcloud compute ssh bosh-bastion
+  mkdir -p ~/workspace
+  cd ~/workspace
+  git clone https://github.com/mariash/bosh-101-release
+  git clone https://github.com/cloudfoundry/bosh-deployment
+  ```
 
-1. On jumpbox get latest bosh cli: http://bosh.io/docs/cli-v2.html
+1. Get latest bosh cli: http://bosh.io/docs/cli-v2.html
 
    ```
    wget https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.28-linux-amd64
@@ -28,9 +37,8 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Deploy BOSH director from jumpbox. See here: http://bosh.io/docs/init-google.html
 
    ```
-   mkdir ~/workspace
-   git clone https://github.com/cloudfoundry/bosh-deployment ~/workspace/bosh-deployment
-
+   cd bosh-101-release
+   
    ./scripts/create-env
    ```
 
@@ -39,7 +47,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    ./scripts/update-cloud-config
    ```
-1. Upload stemcell:
+1. Upload latest stemcell:
 
    ```
    bosh -e bosh-101 upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent
@@ -55,16 +63,15 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    * this script requires `bosh-101-vars.yml` file to exists with the list of deployment variables (available in lastpass).
    * where 2 is the number of students, VMs with BOSH installed on them.
 
-1. Save jumpbox SSH private key on jumpbox VM (currently in lastpass): 
+1. Save jumpbox SSH private key on jumpbox VM (from lastpass in `bosh-101-vars.yml`): 
 
    ```
-   gcloud compute ssh bosh-bastion
    vim ~/.ssh/jumpbox.key
    chmod 600 ~/.ssh/jumpbox.key
    ```
 
-1. To ssh to BOSH-lite VM (e.g. 10.0.0.4):
+1. To ssh to BOSH-lite VM from your anywhere (e.g. 10.0.0.4):
 
    ```
-   GATEWAY_USER=<BASTION_USER> GATEWAY_SSH_KEY=~/.ssh/google_compute_engine GATEWAY_HOST=<BASTION_IP> ./scripts/ssh 10.0.0.4
+   GATEWAY_USER=<BASTION_USER> GATEWAY_SSH_KEY=<BASTION_SSH_KEY> GATEWAY_HOST=<BASTION_IP> ./scripts/ssh 10.0.0.4
    ```
