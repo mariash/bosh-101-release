@@ -13,7 +13,6 @@ bosh -e bosh-101 -d bosh-101-classroom deploy ./bosh-101-classroom.yml \
     --vars-file=./bosh-101-vars.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite-runc.yml \
-    -o ${BOSH_DEPLOYMENT_PATH}/jumpbox-user.yml \
     -o ./bosh-101-ops.yml \
     -v students_count=$1
 
