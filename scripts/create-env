@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+BOSH_DEPLOYMENT_PATH=~/workspace/bosh-deployment
+DEPLOYMENT_STATE_PATH=~/deployments/bosh-101
+GOOGLE_PROJECT_ID=cf-sandbox-mshaldibina
+
+mkdir -p ${DEPLOYMENT_STATE_PATH}
+
+bosh create-env ${BOSH_DEPLOYMENT_PATH}/bosh.yml \
+    --state=${DEPLOYMENT_STATE_PATH}/state.json \
+    --vars-store=${DEPLOYMENT_STATE_PATH}/creds.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/gcp/cpi.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/gcp/service-account.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/jumpbox-user.yml \
+    -v director_name=bosh-101 \
+    -v internal_cidr=10.0.0.0/24 \
+    -v internal_gw=10.0.0.1 \
+    -v internal_ip=10.0.0.6 \
+    -v project_id=${GOOGLE_PROJECT_ID} \
+    -v service_account=terraform@${project_id}.iam.gserviceaccount.com \
+    -v zone=us-east1-d \
+    -v tags=[internal,no-ip] \
+    -v network=bosh \
+    -v subnetwork=bosh-us-east1
+
+bosh alias-env bosh-101 -e 10.0.0.6 --ca-cert <(bosh int ./creds.yml --path /director_ssl/ca)
+
+export BOSH_CLIENT=admin
+export BOSH_CLIENT_SECRET=`bosh int ./creds.yml --path /admin_password`

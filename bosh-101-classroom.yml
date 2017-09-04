@@ -1,0 +1,77 @@
+---
+name: bosh-101-classroom
+
+releases:
+- name: bosh
+  version: "263"
+  url: https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-263-ubuntu-trusty-3445.7-20170901-012146-902840377-20170901012153.tgz?versionId=89a.ZxB3Jc_gl6s4YESlL41xNOfoJKrO
+  sha1: cc71c2ee6992071b1e1f6ae9f2119c03a42521c5
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
+
+update:
+  canaries: 1
+  max_in_flight: 5
+  canary_watch_time: 5000-60000
+  update_watch_time: 5000-60000
+
+disk_pools:
+- name: disks
+  disk_size: 32_768
+
+instance_groups:
+- name: bosh
+  instances: ((students_count))
+  azs: [z1, z2, z3]
+  jobs:
+  - {name: nats, release: bosh}
+  - {name: postgres-9.4, release: bosh}
+  - {name: blobstore, release: bosh}
+  - {name: director, release: bosh}
+  - {name: health_monitor, release: bosh}
+  vm_type: default
+  stemcell: default
+  persistent_disk_pool: large
+  networks:
+  - name: default
+  properties:
+    nats:
+      address: 127.0.0.1
+      user: nats
+      password: ((nats_password))
+    postgres: &db
+      password: ((postgres_password))
+    blobstore:
+      address: 127.0.0.1
+      port: 25250
+      director:
+        user: director
+        password: ((blobstore_director_password))
+      agent:
+        user: agent
+        password: ((blobstore_agent_password))
+    director:
+      address: 127.0.0.1
+      name: bosh-101
+      db: *db
+      cpi_job: warden_cpi
+      ignore_missing_gateway: true
+      ssl:
+        key: ((director_ssl.private_key))
+        cert: ((director_ssl.certificate))
+      user_management:
+        provider: local
+        local:
+          users:
+          - name: admin
+            password: ((admin_password))
+          - name: hm
+            password: ((hm_password))
+    hm:
+      director_account:
+        user: hm
+        password: ((hm_password))
+        ca_cert: ((director_ssl.ca))

@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [ "$#" -ne 1 ]; then
+    echo "Must provide destination VM IP address"
+    exit 1
+fi
+
+if [ -z "$GATEWAY_USER" ]; then
+    echo "Must provide GATEWAY_USER"
+    exit 1
+fi
+
+if [ -z "$GATEWAY_USER" ]; then
+    echo "Must provide GATEWAY_USER"
+    exit 1
+fi
+
+if [ -z "$GATEWAY_HOST" ]; then
+    echo "Must provide GATEWAY_HOST"
+    exit 1
+fi
+
+if [ -z "$GATEWAY_SSH_KEY" ]; then
+    echo "Must provide GATEWAY_SSH_KEY"
+    exit 1
+fi
+
+DESTINATION_HOST=$1
+DESTINATION_SSH_KEY=/home/${GATEWAY_USER}/.ssh/jumpbox.key
+
+ssh -i ${GATEWAY_SSH_KEY} -tt ${GATEWAY_USER}@${GATEWAY_HOST} \
+    ssh -i ${DESTINATION_SSH_KEY} -tt jumpbox@${DESTINATION_HOST}

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+BOSH_DEPLOYMENT_PATH=~/workspace/bosh-deployment
+
+if [ "$#" -ne 1 ]; then
+    echo "Must provide number of students"
+    exit 1
+fi
+
+bosh -e bosh-101 -d bosh-101-classroom deploy ./bosh-101-classroom.yml \
+    --vars-file=./bosh-101-vars.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite-runc.yml \
+    -o ${BOSH_DEPLOYMENT_PATH}/jumpbox-user.yml \
+    -o ./bosh-101-ops.yml \
+    -v students_count=$1
+
+bosh -e bosh-101 vms
