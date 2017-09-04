@@ -6,6 +6,8 @@ releases:
   version: "263"
   url: https://s3.amazonaws.com/bosh-compiled-release-tarballs/bosh-263-ubuntu-trusty-3445.7-20170901-012146-902840377-20170901012153.tgz?versionId=89a.ZxB3Jc_gl6s4YESlL41xNOfoJKrO
   sha1: cc71c2ee6992071b1e1f6ae9f2119c03a42521c5
+- name: bosh-101
+  version: latest
 
 stemcells:
 - alias: default
@@ -32,12 +34,17 @@ instance_groups:
   - {name: blobstore, release: bosh}
   - {name: director, release: bosh}
   - {name: health_monitor, release: bosh}
+  - {name: prepare_bosh101, release: bosh-101}
   vm_type: default
   stemcell: default
   persistent_disk_pool: large
   networks:
   - name: default
   properties:
+    bosh101:
+      stemcell_url: https://s3.amazonaws.com/bosh-gce-light-stemcells/light-bosh-stemcell-3445.7-google-kvm-ubuntu-trusty-go_agent.tgz
+      release_url: https://github.com/mariash/learn-bosh-release
+      bosh_cli_url: https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.28-linux-amd64
     nats:
       address: 127.0.0.1
       user: nats

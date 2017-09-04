@@ -5,11 +5,11 @@ templates:
   post-start.sh.erb: bin/post-start
 
 properties:
-  stemcell_url:
+  bosh101.stemcell_url:
     description: Stemcell URL to download on VM
 
-  release_url:
+  bosh101.release_url:
     description: Release URL to download on VM
 
-  bosh_cli_url:
+  bosh101.bosh_cli_url:
     description: BOSH CLI URL to download on VM

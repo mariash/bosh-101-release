@@ -11,16 +11,16 @@ cd /home/${USER}
 sudo -u ${USER} mkdir -p workspace
 
 echo "`date`: Downloading stemcell..."
-sudo -u ${USER} curl -L <%=p('stemcell_url')%> -o workspace/stemcell.tgz
+sudo -u ${USER} curl -L <%=p('bosh101.stemcell_url')%> -o workspace/stemcell.tgz
 
 echo "`date`: Installing git..."
 apt-get update -y && apt-get install -y git
 
 echo "`date`: Downloading release..."
-sudo -u ubuntu git clone <%=p('release_url')%> workspace/release
+sudo -u ${USER} git clone <%=p('bosh101.release_url')%> workspace/release
 
 echo "`date`: Downloading BOSH CLI binary..."
-curl -L <%=p('bosh_cli_url')%> -o /usr/local/bin/bosh
+curl -L <%=p('bosh101.bosh_cli_url')%> -o /usr/local/bin/bosh
 chmod 755 /usr/local/bin/bosh
 
 exit 0
