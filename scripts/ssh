@@ -26,4 +26,4 @@ DESTINATION_HOST=$1
 DESTINATION_SSH_KEY=/home/${GATEWAY_USER}/.ssh/jumpbox.key
 
 ssh -i ${GATEWAY_SSH_KEY} -tt ${GATEWAY_USER}@${GATEWAY_HOST} \
-    ssh -i ${DESTINATION_SSH_KEY} -tt jumpbox@${DESTINATION_HOST}
+    ssh -i ${DESTINATION_SSH_KEY} -tt jumpbox@${DESTINATION_HOST} /bin/bash
