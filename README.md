@@ -82,7 +82,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    sudo service ssh restart
    ```
-   Make sure to switch this back after the class or do full cleanup (see After the class section below).
+   Make sure to switch this back after the class or do full cleanup (see [#after-the-class](After the class) section below).
 
 1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
 
@@ -99,11 +99,12 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 
 ## After the class:
 
-   * on jumpbox
-   ```
-   bosh -e bosh-101 -d bosh-101-classroom delete-deployment
-   ```
+On jumpbox:
+
+```
+bosh -e bosh-101 -d bosh-101-classroom delete-deployment
+```
    
-   It is advisable to cleanup your whole GCP environment following these instructions: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md#delete-resources
+It is advisable to cleanup your whole GCP environment following these instructions: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md#delete-resources
    
-   It should be easy and fast to spin up new environment following this guide (~15 mins). If you stuck somewhere please open an issue. This guide might become outdates so contributions are welcome.
+It should be easy and fast to spin up new environment following this guide (~15 mins). If you stuck somewhere please open an issue. This guide might become outdates so contributions are welcome.
