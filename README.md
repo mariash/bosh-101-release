@@ -97,7 +97,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ./scripts/ssh <JUMPBOX_IP> 10.0.0.4
    ```
 
-## After the class:
+## After the class
 
 On jumpbox:
 
