@@ -82,7 +82,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    sudo service ssh restart
    ```
-   Make sure to switch this back after the class or do full cleanup (see [https://github.com/mariash/bosh-101-release/blob/master/README.md#after-the-class](After the class) section below).
+   Make sure to switch this back after the class or do full cleanup (see [After the class](README.md#after-the-class) section below).
 
 1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
 
