@@ -67,12 +67,22 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Right before the class on a jumpbox VM (`bosh-bastion`) create a temporary user:
 
    ```
-   useradd --create-home -e 2013-07-30 jumpbox
+   sudo useradd --create-home -e 2013-07-30 jumpbox
    passwd jumpbox
    ```
    
    * where `2013-07-30` is the expiration date of user.
    * set password to something that will be shared during the class (this VM is open to public, so make it hard, but something users can retype).
+
+1. Update /etc/ssh/sshd_config:
+   ```
+   PasswordAuthentication yes 
+   ```
+   and then restart the sshd:
+   ```
+   sudo service ssh restart
+   ```
+   Make sure to switch this back after the class or do full cleanup (see After the class section below).
 
 1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
 
@@ -86,3 +96,14 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    ./scripts/ssh <JUMPBOX_IP> 10.0.0.4
    ```
+
+## After the class:
+
+   * on jumpbox
+   ```
+   bosh -e bosh-101 -d bosh-101-classroom delete-deployment
+   ```
+   
+   It is advisable to cleanup your whole GCP environment following these instructions: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/blob/master/docs/bosh/README.md#delete-resources
+   
+   It should be easy and fast to spin up new environment following this guide (~15 mins). If you stuck somewhere please open an issue. This guide might become outdates so contributions are welcome.
