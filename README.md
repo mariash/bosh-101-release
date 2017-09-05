@@ -64,15 +64,25 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    * where 2 is the number of students, VMs with BOSH installed on them.
 
-1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml`): 
+1. Right before the class on a jumpbox VM (`bosh-bastion`) create a temporary user:
 
    ```
-   vim ~/.ssh/jumpbox.key
-   chmod 600 ~/.ssh/jumpbox.key
+   useradd --create-home -e 2013-07-30 jumpbox
+   passwd jumpbox
    ```
+   
+   * where `2013-07-30` is the expiration date of user.
+   * set password to something that will be shared during the class (this VM is open to public, so make it hard, but something users can retype).
 
-1. To ssh to BOSH-lite VM from your anywhere (e.g. 10.0.0.4):
+1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
 
    ```
-   GATEWAY_USER=<BASTION_USER> GATEWAY_SSH_KEY=<BASTION_SSH_KEY> GATEWAY_HOST=<BASTION_IP> ./scripts/ssh 10.0.0.4
+   vim /home/jumpbox/.ssh/jumpbox.key
+   chmod 600 /home/jumpbox/.ssh/jumpbox.key
+   ```   
+
+1. Now students can SSH to their BOSH sandbox VM (bosh-lite with CLI) (e.g. 10.0.0.4) as following:
+
+   ```
+   ./scripts/ssh <JUMPBOX_IP> 10.0.0.4
    ```
