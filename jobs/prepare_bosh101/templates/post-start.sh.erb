@@ -10,17 +10,34 @@ cd /home/${USER}
 
 sudo -u ${USER} mkdir -p workspace
 
-echo "`date`: Downloading stemcell..."
-sudo -u ${USER} curl -L <%=p('bosh101.stemcell_url')%> -o workspace/stemcell.tgz
+if [ ! -f workspace/stemcell.tgz ]; then
+  echo "`date`: Downloading stemcell..."
+  sudo -u ${USER} curl -L <%=p('bosh101.stemcell_url')%> -o workspace/stemcell.tgz
+fi
 
-echo "`date`: Installing git..."
-apt-get update -y && apt-get install -y git
+if [ ! -d workspace/release ]; then
+  echo "`date`: Installing git..."
+  apt-get update -y && apt-get install -y git
 
-echo "`date`: Downloading release..."
-sudo -u ${USER} git clone <%=p('bosh101.release_url')%> workspace/release
+  echo "`date`: Downloading release..."
+  sudo -u ${USER} git clone <%=p('bosh101.release_url')%> workspace/release
+fi
 
-echo "`date`: Downloading BOSH CLI binary..."
-curl -L <%=p('bosh101.bosh_cli_url')%> -o /usr/local/bin/bosh
-chmod 755 /usr/local/bin/bosh
+pushd workspace/release
+sudo -u ${USER} git pull
+sudo -u ${USER} git checkout <%=p('bosh101.release_branch')%>
+popd
+
+if [ ! -f /usr/local/bin/bosh ]; then
+  echo "`date`: Downloading BOSH CLI binary..."
+  curl -L <%=p('bosh101.bosh_cli_url')%> -o /usr/local/bin/bosh
+  chmod 755 /usr/local/bin/bosh
+fi
+
+if [ ! -f /home/${USER}/director.cert ]; then
+  echo "`date`: Adding bosh ca cert..."
+  mv /var/vcap/jobs/prepare_bosh101/config/director.cert /home/${USER}/director.cert
+  chown ${USER} /home/${USER}/director.cert
+fi
 
 exit 0

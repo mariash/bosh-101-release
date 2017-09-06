@@ -3,6 +3,7 @@ name: prepare_bosh101
 
 templates:
   post-start.sh.erb: bin/post-start
+  director.cert.erb: config/director.cert
 
 properties:
   bosh101.stemcell_url:
@@ -11,5 +12,12 @@ properties:
   bosh101.release_url:
     description: Release URL to download on VM
 
+  bosh101.release_branch:
+    description: Release URL to download on VM
+    default: master
+
   bosh101.bosh_cli_url:
     description: BOSH CLI URL to download on VM
+
+  director.ssl.cert:
+    description: Local director cert

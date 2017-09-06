@@ -44,6 +44,7 @@ instance_groups:
     bosh101:
       stemcell_url: https://s3.amazonaws.com/bosh-gce-light-stemcells/light-bosh-stemcell-3445.7-google-kvm-ubuntu-trusty-go_agent.tgz
       release_url: https://github.com/mariash/learn-bosh-release
+      release_branch: cloud-config
       bosh_cli_url: https://s3.amazonaws.com/bosh-cli-artifacts/bosh-cli-2.0.28-linux-amd64
     nats:
       address: 127.0.0.1
