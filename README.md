@@ -30,8 +30,8 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 
    sudo gem uninstall bosh_cli
    sudo rm /usr/bin/bosh2
-   mv bosh-cli-2.0.28-linux-amd64 /usr/local/bin/bosh
-   chmod +x /usr/local/bin/bosh
+   sudo mv bosh-cli-2.0.28-linux-amd64 /usr/local/bin/bosh
+   sudo chmod +x /usr/local/bin/bosh
    ```
 
 1. Deploy BOSH director from jumpbox. See here: http://bosh.io/docs/init-google.html
