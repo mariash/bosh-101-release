@@ -15,13 +15,13 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    **NOTE**: Replace `hashicorp/terraform:light` with `hashicorp/terraform:0.9.9` as per this issue: https://github.com/cloudfoundry-incubator/bosh-google-cpi-release/issues/222
    
 1. SSH to jumpbox
-  ```
-  gcloud compute ssh bosh-bastion
-  mkdir -p ~/workspace
-  cd ~/workspace
-  git clone https://github.com/mariash/bosh-101-release
-  git clone https://github.com/cloudfoundry/bosh-deployment
-  ```
+   ```
+   gcloud compute ssh bosh-bastion
+   mkdir -p ~/workspace
+   cd ~/workspace
+   git clone https://github.com/mariash/bosh-101-release
+   git clone https://github.com/cloudfoundry/bosh-deployment
+   ```
 
 1. Get latest bosh cli: http://bosh.io/docs/cli-v2.html
 
