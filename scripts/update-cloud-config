@@ -2,6 +2,7 @@
 
 set -e
 bosh -e bosh-101 update-cloud-config ~/workspace/bosh-deployment/gcp/cloud-config.yml \
+    -o ./gcp-cloud-config-ops.yml \
     -v zone=us-east1-d \
     -v tags=[internal] \
     -v internal_cidr=10.0.0.0/24 \
