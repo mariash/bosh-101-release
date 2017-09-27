@@ -84,10 +84,11 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    Make sure to switch this back after the class or do full cleanup (see [After the class](README.md#after-the-class) section below).
    
-   Disable sshguard that will block user after N failed attempts for 15 mins:
+   Disable sshguard that will block user after N failed attempts for 15 mins for office IP address:
    
    ```
-   sudo service sshguard stop
+   sudo vim /etc/sshguard/whitelist # add office IP to the list
+   sudo service sshguard restart
    ```
 
 1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
