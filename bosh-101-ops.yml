@@ -1,5 +1,0 @@
-- type: remove
-  path: /disk_pools
-
-- type: remove
-  path: /instance_groups/name=bosh/jobs/name=disable_agent

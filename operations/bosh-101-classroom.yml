@@ -1,0 +1,24 @@
+- type: replace
+  path: /releases/-
+  value:
+    name: bosh-101
+    version: latest
+
+- type: replace
+  path: /instance_groups/name=bosh/instances
+  value: ((students_count))
+
+- type: replace
+  path: /instance_groups/name=bosh/properties/bosh101?
+  value:
+    bosh101:
+      stemcell_url: https://s3.amazonaws.com/bosh-core-stemcells/warden/bosh-stemcell-97.28-warden-boshlite-ubuntu-xenial-go_agent.tgz
+      release_url: https://github.com/mariash/learn-bosh-release
+      release_branch: cloud-config
+      bosh_cli_url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64
+
+- type: remove
+  path: /disk_pools
+
+- type: remove
+  path: /instance_groups/name=bosh/jobs/name=disable_agent

@@ -9,11 +9,12 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
-bosh -e bosh-101 -d bosh-101-classroom deploy ./bosh-101-classroom.yml \
+bosh -e bosh-101 -d bosh-101-classroom deploy ${BOSH_DEPLOYMENT_PATH}/bosh.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite-runc.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/jumpbox-user.yml \
-    -o ./bosh-101-ops.yml \
+    -o ./operations/bosh-101-classroom.yml \
+    -v internal_ip=10.254.50.4 \
     -v students_count=$1
 
 bosh -e bosh-101 vms
