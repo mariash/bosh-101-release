@@ -91,7 +91,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Prepare set-env script for user for easier ssh:
 
    ```
-   sudo -u jumpbox mkdir /home/jumpbox/deployments/bosh-101
+   sudo -u jumpbox mkdir -p /home/jumpbox/deployments/bosh-101
    sudo -u jumpbox cp ~/deployments/bosh-101/creds.yml /home/jumpbox/deployments/bosh-101/creds.yml
    sudo -u jumpbox cp ~/workspace/bosh-101-release/scripts/set-env /home/jumpbox/set-env
    ```
