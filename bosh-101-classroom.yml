@@ -75,6 +75,11 @@ instance_groups:
       agent:
         user: agent
         password: ((blobstore_agent_password))
+      tls:
+        cert:
+          ca: ((blobstore_ca.certificate))
+          certificate: ((blobstore_server_tls.certificate))
+          private_key: ((blobstore_server_tls.private_key))
     director:
       address: 127.0.0.1
       name: bosh-101
