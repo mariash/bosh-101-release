@@ -53,8 +53,6 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    bosh -e bosh-101 upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent
    ```
-1. Create `bosh-101-vars.yml` file with BOSH deployment variables (available in lastpass).
-
 1. Deploy VMs with BOSH + warden CPI to that BOSH director:
    ```
    bosh create-release
