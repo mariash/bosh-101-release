@@ -9,6 +9,21 @@
     version: latest
 
 - type: replace
+  path: /update?
+  value:
+    canaries: 1
+    max_in_flight: 5
+    canary_watch_time: 5000-60000
+    update_watch_time: 5000-60000
+
+- type: replace
+  path: /stemcells?
+  value:
+  - alias: default
+    os: ubuntu-xenial
+    version: latest
+
+- type: replace
   path: /instance_groups/name=bosh/instances
   value: ((students_count))
 
@@ -20,6 +35,26 @@
     release_branch: cloud-config
     bosh_cli_url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64
 
+- type: replace
+  path: /instance_groups/name=bosh/persistent_disk_pool
+  value: large
+
+- type: replace
+  path: /instance_groups/name=bosh/vm_type?
+  value: default
+
+- type: replace
+  path: /instance_groups/name=bosh/stemcell?
+  value: default
+
+- type: replace
+  path: /instance_groups/name=bosh/networks/name=default
+  value:
+    name: default
+
+- type: remove
+  path: /instance_groups/name=bosh/jobs/name=disable_agent
+
 - type: remove
   path: /disk_pools
 
@@ -29,29 +64,5 @@
 - type: remove
   path: /resource_pools
 
-- type: replace
-  path: /instance_groups/name=bosh/persistent_disk_pool
-  value: large
-
-- type: replace
-  path: /instance_groups/name=bosh/vm_type?
-  value: default
-
 - type: remove
   path: /instance_groups/name=bosh/resource_pool
-
-- type: replace
-  path: /instance_groups/name=bosh/networks/name=default
-  value:
-    name: default
-
-- type: replace
-  path: /update?
-  value:
-    canaries: 1
-    max_in_flight: 5
-    canary_watch_time: 5000-60000
-    update_watch_time: 5000-60000
-
-- type: remove
-  path: /instance_groups/name=bosh/jobs/name=disable_agent
