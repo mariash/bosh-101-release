@@ -1,5 +1,5 @@
 - type: replace
-  path: /deployment_name
+  path: /name
   value: bosh-101-classroom
 
 - type: replace
