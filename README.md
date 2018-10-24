@@ -88,11 +88,18 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    sudo vim /etc/sshguard/whitelist # add office IP to the list
    sudo service sshguard restart
    ```
+1. Prepare set-env script for user for easier ssh:
+
+   ```
+   sudo -u jumpbox cp ~/workspace/bosh-101-release/scripts/set-env /home/jumpbox/set-env
+   ```
 
 1. Now students can SSH to their BOSH sandbox VM (bosh-lite with CLI) as following:
 
    ```
    ssh jumpbox@JUMPBOX_IP
+   /bin/bash
+   source ./set-env
    bosh -e bosh-101 -d bosh-101-classroom ssh bosh/0
    ```
 
