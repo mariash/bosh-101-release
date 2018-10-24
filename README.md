@@ -89,18 +89,11 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    sudo service sshguard restart
    ```
 
-1. Save jumpbox SSH private key on jumpbox VM (from `bosh-101-vars.yml` from lastpass), will be used to SSH to students sandbox VM: 
+1. Now students can SSH to their BOSH sandbox VM (bosh-lite with CLI) as following:
 
    ```
-   sudo -u jumpbox mkdir /home/jumpbox/.ssh
-   sudo -u jumpbox vim /home/jumpbox/.ssh/jumpbox.key
-   sudo chmod 600 /home/jumpbox/.ssh/jumpbox.key
-   ```   
-
-1. Now students can SSH to their BOSH sandbox VM (bosh-lite with CLI) (e.g. 10.0.0.4) as following:
-
-   ```
-   ./scripts/ssh <JUMPBOX_IP> 10.0.0.4
+   ssh jumpbox@JUMPBOX_IP
+   bosh -e bosh-101 -d bosh-101-classroom ssh bosh/0
    ```
 
 ## After the class
