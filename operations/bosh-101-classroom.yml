@@ -28,6 +28,12 @@
   value: ((students_count))
 
 - type: replace
+  path: /instance_groups/name=bosh/jobs/-
+  value:
+    name: prepare_bosh101
+    release: bosh-101
+
+- type: replace
   path: /instance_groups/name=bosh/properties/bosh101?
   value:
     stemcell_url: https://s3.amazonaws.com/bosh-core-stemcells/warden/bosh-stemcell-97.28-warden-boshlite-ubuntu-xenial-go_agent.tgz
