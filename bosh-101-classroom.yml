@@ -110,7 +110,7 @@ variables:
   options:
     ca: nats_ca
     common_name: default.nats.bosh-internal
-    alternative_names: [((internal_ip))]
+    alternative_names: [10.254.50.4]
     extended_key_usage:
     - server_auth
 
@@ -140,5 +140,5 @@ variables:
   type: certificate
   options:
     ca: blobstore_ca
-    common_name: ((internal_ip))
-    alternative_names: [((internal_ip))]
+    common_name: 10.254.50.4
+    alternative_names: [10.254.50.4]
