@@ -51,7 +51,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 1. Upload latest stemcell:
 
    ```
-   bosh -e bosh-101 upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-trusty-go_agent
+   bosh -e bosh-101 upload-stemcell https://bosh.io/d/stemcells/bosh-google-kvm-ubuntu-xenial-go_agent
    ```
 1. Create `bosh-101-vars.yml` file with BOSH deployment variables (available in lastpass).
 
