@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-/bin/bash
-
 DEPLOYMENT_STATE_PATH=~/deployments/bosh-101
 
 export BOSH_CLIENT=admin
