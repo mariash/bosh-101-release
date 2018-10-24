@@ -34,7 +34,7 @@
   value: large
 
 - type: replace
-  path: /instance_groups/name=bosh/vm_type
+  path: /instance_groups/name=bosh/vm_type?
   value: default
 
 - type: replace
