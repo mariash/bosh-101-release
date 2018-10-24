@@ -14,6 +14,7 @@ bosh -e bosh-101 -d bosh-101-classroom deploy ${BOSH_DEPLOYMENT_PATH}/bosh.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/bosh-lite-runc.yml \
     -o ${BOSH_DEPLOYMENT_PATH}/jumpbox-user.yml \
     -o ./operations/bosh-101-classroom.yml \
+    -v director_name=sandbox \
     -v internal_ip=10.254.50.4 \
     -v students_count=$1
 
