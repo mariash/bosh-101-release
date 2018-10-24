@@ -30,6 +30,19 @@
   path: /resource_pools
 
 - type: replace
+  path: /instance_groups/name=bosh/persistent_disk_pool
+  value: large
+
+- type: replace
+  path: /instance_groups/name=bosh/vm_type
+  value: default
+
+- type: replace
+  path: /instance_groups/name=bosh/networks/name=default
+  value:
+    name: default
+
+- type: replace
   path: /update?
   value:
     canaries: 1
