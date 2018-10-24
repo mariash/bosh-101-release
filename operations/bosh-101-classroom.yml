@@ -48,6 +48,10 @@
   value: default
 
 - type: replace
+  path: /instance_groups/name=bosh/azs?
+  value: [z1, z2, z3]
+
+- type: replace
   path: /instance_groups/name=bosh/networks/name=default
   value:
     name: default
