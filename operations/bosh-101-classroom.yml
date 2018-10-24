@@ -30,5 +30,14 @@
 - type: remove
   path: /resource_pools
 
+- type: replace
+  path: /update?
+  value:
+    update:
+      canaries: 1
+      max_in_flight: 5
+      canary_watch_time: 5000-60000
+      update_watch_time: 5000-60000
+
 - type: remove
   path: /instance_groups/name=bosh/jobs/name=disable_agent
