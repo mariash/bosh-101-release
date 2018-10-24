@@ -67,6 +67,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    ```
    sudo useradd --create-home -e 2013-07-30 jumpbox
    sudo passwd jumpbox
+   sudo chsh jumpbox -s /bin/bash
    ```
    
    * where `2013-07-30` is the expiration date of user.
@@ -100,7 +101,6 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 
    ```
    ssh jumpbox@JUMPBOX_IP
-   /bin/bash
    source ./set-env
    bosh -e bosh-101 -d bosh-101-classroom ssh bosh/0
    ```
