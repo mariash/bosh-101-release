@@ -3,17 +3,3 @@
 
 - type: remove
   path: /instance_groups/name=bosh/jobs/name=disable_agent
-
-- type: replace
-  path: /instance_groups/name=bosh/properties/director/default_ssh_options?/gateway_user
-  value: jumpbox
-
-- type: replace
-  path: /instance_groups/name=bosh/jobs/-
-  value:
-    name: user_add
-    release: os-conf
-    properties:
-      users:
-      - name: jumpbox
-        public_key: ((jumpbox_ssh.public_key))
