@@ -25,4 +25,10 @@
   path: /disk_pools
 
 - type: remove
+  path: /networks
+
+- type: remove
+  path: /resource_pools
+
+- type: remove
   path: /instance_groups/name=bosh/jobs/name=disable_agent
