@@ -66,7 +66,7 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
 
    ```
    sudo useradd --create-home -e 2013-07-30 jumpbox
-   passwd jumpbox
+   sudo passwd jumpbox
    ```
    
    * where `2013-07-30` is the expiration date of user.
