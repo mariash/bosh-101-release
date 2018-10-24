@@ -76,3 +76,6 @@
 
 - type: remove
   path: /instance_groups/name=bosh/resource_pool
+
+- type: remove
+  path: /cloud_provider
