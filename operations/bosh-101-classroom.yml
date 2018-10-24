@@ -15,11 +15,10 @@
 - type: replace
   path: /instance_groups/name=bosh/properties/bosh101?
   value:
-    bosh101:
-      stemcell_url: https://s3.amazonaws.com/bosh-core-stemcells/warden/bosh-stemcell-97.28-warden-boshlite-ubuntu-xenial-go_agent.tgz
-      release_url: https://github.com/mariash/learn-bosh-release
-      release_branch: cloud-config
-      bosh_cli_url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64
+    stemcell_url: https://s3.amazonaws.com/bosh-core-stemcells/warden/bosh-stemcell-97.28-warden-boshlite-ubuntu-xenial-go_agent.tgz
+    release_url: https://github.com/mariash/learn-bosh-release
+    release_branch: cloud-config
+    bosh_cli_url: https://github.com/cloudfoundry/bosh-cli/releases/download/v5.3.1/bosh-cli-5.3.1-linux-amd64
 
 - type: remove
   path: /disk_pools
@@ -33,11 +32,10 @@
 - type: replace
   path: /update?
   value:
-    update:
-      canaries: 1
-      max_in_flight: 5
-      canary_watch_time: 5000-60000
-      update_watch_time: 5000-60000
+    canaries: 1
+    max_in_flight: 5
+    canary_watch_time: 5000-60000
+    update_watch_time: 5000-60000
 
 - type: remove
   path: /instance_groups/name=bosh/jobs/name=disable_agent
