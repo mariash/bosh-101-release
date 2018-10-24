@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -e
+
+DEPLOYMENT_STATE_PATH=~/deployments/bosh-101
+
+export BOSH_CLIENT=admin
+export BOSH_CLIENT_SECRET=`bosh int ${DEPLOYMENT_STATE_PATH}/creds.yml --path /admin_password`
