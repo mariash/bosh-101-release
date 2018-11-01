@@ -89,20 +89,20 @@ Bosh-101 director manages `bosh-101-classroom` deployment that consists of `N` V
    sudo vim /etc/sshguard/whitelist # add office IP to the list
    sudo service sshguard restart
    ```
-1. Prepare set-env script for user for easier ssh:
+1. Prepare jumpbox ssh key:
 
    ```
-   sudo -u jumpbox mkdir -p /home/jumpbox/deployments/bosh-101
-   sudo -u jumpbox cp ~/deployments/bosh-101/creds.yml /home/jumpbox/deployments/bosh-101/creds.yml
-   sudo -u jumpbox cp ~/workspace/bosh-101-release/scripts/set-env /home/jumpbox/set-env
+   credhub get -n /bosh-101/bosh-101-classroom/jumpbox_ssh -k private_key > /tmp/jumpbox.key
+   sudo chown jumpbox:jumpbox /tmp/jumpbox.key
+   sudo -u jumpbox mv /tmp/jumpbox.key /home/jumpbox/.ssh/jumpbox.key
+   sudo -u jumpbox chmod 600 /home/jumpbox/.ssh/jumpbox.key
    ```
 
 1. Now students can SSH to their BOSH sandbox VM (bosh-lite with CLI) as following:
 
    ```
    ssh jumpbox@JUMPBOX_IP
-   source ./set-env
-   bosh -e bosh-101 -d bosh-101-classroom ssh bosh/0
+   ssh -i ~/.ssh/jumpbox.key jumpbox@BOSH_VM_IP
    ```
 
 ## After the class
