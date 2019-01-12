@@ -15,6 +15,9 @@ if [ ! -f workspace/stemcell.tgz ]; then
   sudo -u ${USER} curl -L <%=p('bosh101.stemcell_url')%> -o workspace/stemcell.tgz
 fi
 
+# see https://github.com/cloudfoundry/bosh-linux-stemcell-builder/issues/39
+chmod 1777 /tmp
+
 if [ ! -d workspace/release ]; then
   echo "`date`: Installing git..."
   apt-get update -y && apt-get install -y git
