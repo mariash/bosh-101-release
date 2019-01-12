@@ -23,6 +23,9 @@ if [ ! -d workspace/release ]; then
   sudo -u ${USER} git clone <%=p('bosh101.release_url')%> workspace/release
 fi
 
+echo "`date`: Installing nano..."
+apt-get install -y nano
+
 pushd workspace/release
 sudo -u ${USER} git pull
 sudo -u ${USER} git checkout <%=p('bosh101.release_branch')%>
